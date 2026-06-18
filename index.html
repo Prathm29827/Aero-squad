@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AeroSquad — Drone Fleet Command</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- ====== SIDEBAR ====== -->
+<aside class="sidebar" id="sidebar" data-testid="sidebar">
+  <div class="sidebar-header">
+    <div class="logo" data-testid="logo">
+      <div class="logo-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="3" fill="#00D4FF"/>
+          <path d="M14 2L14 6M14 22L14 26M2 14L6 14M22 14L26 14" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/>
+          <path d="M5.5 5.5L8.3 8.3M19.7 19.7L22.5 22.5M22.5 5.5L19.7 8.3M8.3 19.7L5.5 22.5" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <circle cx="14" cy="14" r="7" stroke="#00D4FF" stroke-width="1" stroke-dasharray="2 3" opacity="0.4"/>
+        </svg>
+      </div>
+      <span class="logo-text">AeroSquad</span>
+    </div>
+    <button class="sidebar-toggle" id="sidebar-toggle-btn" data-testid="sidebar-toggle-btn" aria-label="Toggle sidebar">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M3 5H15M3 9H15M3 13H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Operations</div>
+    <a href="#" class="nav-item active" data-testid="nav-fleet-overview">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span>Fleet Overview</span>
+      <span class="nav-badge">12</span>
+    </a>
+    <a href="#" class="nav-item" data-testid="nav-flight-logs">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11 7H16L12 10.5L13.5 16L9 12.5L4.5 16L6 10.5L2 7H7L9 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span>Flight Logs</span>
+    </a>
+    <a href="#" class="nav-item" data-testid="nav-live-map">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M9 2C5.7 2 3 4.7 3 8C3 12.5 9 16 9 16C9 16 15 12.5 15 8C15 4.7 12.3 2 9 2Z" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span>Live Map</span>
+    </a>
+    <a href="#" class="nav-item" data-testid="nav-missions">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9H16M9 2L9 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+      <span>Missions</span>
+      <span class="nav-badge active">3</span>
+    </a>
+
+    <div class="nav-section-label" style="margin-top: 20px;">Management</div>
+    <a href="#" class="nav-item" data-testid="nav-maintenance">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M14.5 3.5C13.1 2.1 11.1 1.9 9.5 2.9L7 5.4L12.6 11L15.1 8.5C16.1 6.9 15.9 4.9 14.5 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 5.5L2.5 10C2 11 2.5 12.5 3.5 13L5 14.5C5.5 15.5 7 16 8 15.5L12.5 11" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span>Maintenance</span>
+      <span class="nav-badge warning">2</span>
+    </a>
+    <a href="#" class="nav-item" data-testid="nav-operators">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 15C3 12.2 5.7 10 9 10C12.3 10 15 12.2 15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span>Operators</span>
+    </a>
+    <a href="#" class="nav-item" data-testid="nav-api-keys">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 11L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 13L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span>API Keys</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="system-status" data-testid="system-status">
+      <div class="status-dot pulse-green"></div>
+      <span>All Systems Nominal</span>
+    </div>
+    <div class="version-tag">v2.4.1 — PROD</div>
+  </div>
+</aside>
+
+<!-- ====== MAIN CONTENT ====== -->
+<main class="main-content" id="main-content">
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="page-breadcrumb">
+        <span class="breadcrumb-root">Operations</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="breadcrumb-current">Fleet Overview</span>
+      </div>
+      <h1 class="page-title" data-testid="page-title">Fleet Command</h1>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrapper" data-testid="search-wrapper">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input type="text" id="search-input" data-testid="search-input" placeholder="Search drone, operator…" class="search-input" />
+        <kbd class="search-kbd">⌘K</kbd>
+      </div>
+      <button class="icon-btn" data-testid="notification-btn" aria-label="Notifications">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C9 2 5 4 5 9V13H13V9C13 4 9 2 9 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 13C7 14.1 7.9 15 9 15C10.1 15 11 14.1 11 13" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <div class="user-avatar" data-testid="user-avatar">
+        <span>CX</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- KPI Grid -->
+  <section class="kpi-grid" data-testid="kpi-grid">
+
+    <div class="kpi-card" data-testid="kpi-active-drones">
+      <div class="kpi-card-header">
+        <span class="kpi-label">Total Active Drones</span>
+        <div class="kpi-icon cyan">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="2.5" fill="currentColor"/><path d="M10 3L10 5M10 15L10 17M3 10L5 10M15 10L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5.1 5.1L6.5 6.5M13.5 13.5L14.9 14.9M14.9 5.1L13.5 6.5M6.5 13.5L5.1 14.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/></svg>
+        </div>
+      </div>
+      <div class="kpi-value" data-testid="kpi-drones-value">
+        <span class="kpi-number">12</span>
+        <span class="kpi-unit">units</span>
+      </div>
+      <div class="kpi-delta positive" data-testid="kpi-drones-delta">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 9V3M3 6L6 3L9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        +2 from last shift
+      </div>
+      <div class="kpi-sparkline">
+        <svg viewBox="0 0 120 30" fill="none" preserveAspectRatio="none">
+          <polyline points="0,25 20,20 40,22 60,12 80,8 100,10 120,5" stroke="#00D4FF" stroke-width="1.5" fill="none" opacity="0.8"/>
+          <polyline points="0,25 20,20 40,22 60,12 80,8 100,10 120,5 120,30 0,30" fill="url(#cyanGrad)" opacity="0.15"/>
+          <defs><linearGradient id="cyanGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00D4FF"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/></linearGradient></defs>
+        </svg>
+      </div>
+    </div>
+
+    <div class="kpi-card" data-testid="kpi-active-missions">
+      <div class="kpi-card-header">
+        <span class="kpi-label">Active Missions</span>
+        <div class="kpi-icon green">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3L10 17M3 10L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+        </div>
+      </div>
+      <div class="kpi-value" data-testid="kpi-missions-value">
+        <span class="kpi-number">7</span>
+        <span class="kpi-unit">live</span>
+      </div>
+      <div class="kpi-delta positive">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 9V3M3 6L6 3L9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        3 in critical zone
+      </div>
+      <div class="kpi-sparkline">
+        <svg viewBox="0 0 120 30" fill="none" preserveAspectRatio="none">
+          <polyline points="0,20 20,15 40,18 60,10 80,6 100,12 120,8" stroke="#00E87A" stroke-width="1.5" fill="none" opacity="0.8"/>
+          <polyline points="0,20 20,15 40,18 60,10 80,6 100,12 120,8 120,30 0,30" fill="url(#greenGrad)" opacity="0.15"/>
+          <defs><linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00E87A"/><stop offset="100%" stop-color="#00E87A" stop-opacity="0"/></linearGradient></defs>
+        </svg>
+      </div>
+    </div>
+
+    <div class="kpi-card" data-testid="kpi-system-alerts">
+      <div class="kpi-card-header">
+        <span class="kpi-label">System Alerts</span>
+        <div class="kpi-icon amber">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3L18 17H2L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 9V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="14.5" r="0.75" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="kpi-value alerts-value" data-testid="kpi-alerts-value">
+        <span class="kpi-number amber-text">4</span>
+        <div class="alert-breakdown">
+          <span class="alert-chip critical" data-testid="alert-chip-critical">2 Critical</span>
+          <span class="alert-chip warning" data-testid="alert-chip-warning">2 Warning</span>
+        </div>
+      </div>
+      <div class="kpi-delta negative">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 3V9M9 6L6 9L3 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Requires immediate review
+      </div>
+      <div class="kpi-sparkline">
+        <svg viewBox="0 0 120 30" fill="none" preserveAspectRatio="none">
+          <polyline points="0,10 20,15 40,10 60,20 80,16 100,22 120,18" stroke="#FFB800" stroke-width="1.5" fill="none" opacity="0.8"/>
+          <polyline points="0,10 20,15 40,10 60,20 80,16 100,22 120,18 120,30 0,30" fill="url(#amberGrad)" opacity="0.15"/>
+          <defs><linearGradient id="amberGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FFB800" stop-opacity="0"/></linearGradient></defs>
+        </svg>
+      </div>
+    </div>
+
+    <div class="kpi-card radar-card" data-testid="kpi-radar">
+      <div class="kpi-card-header">
+        <span class="kpi-label">Fleet Health</span>
+        <div class="kpi-icon cyan">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="10" cy="10" r="1" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="radar-display">
+        <svg class="radar-svg" viewBox="0 0 120 90" fill="none">
+          <circle cx="60" cy="50" r="38" stroke="#00D4FF" stroke-width="0.5" opacity="0.2"/>
+          <circle cx="60" cy="50" r="25" stroke="#00D4FF" stroke-width="0.5" opacity="0.2"/>
+          <circle cx="60" cy="50" r="12" stroke="#00D4FF" stroke-width="0.5" opacity="0.2"/>
+          <line x1="60" y1="12" x2="60" y2="88" stroke="#00D4FF" stroke-width="0.5" opacity="0.15"/>
+          <line x1="22" y1="50" x2="98" y2="50" stroke="#00D4FF" stroke-width="0.5" opacity="0.15"/>
+          <!-- Sweep -->
+          <path class="radar-sweep" d="M60 50 L60 12 A38 38 0 0 1 98 50 Z" fill="url(#sweepGrad)" opacity="0.3"/>
+          <!-- Blips -->
+          <circle cx="72" cy="30" r="2.5" fill="#00E87A" opacity="0.9" class="blip"/>
+          <circle cx="45" cy="42" r="2" fill="#00D4FF" opacity="0.9" class="blip"/>
+          <circle cx="80" cy="58" r="2" fill="#00D4FF" opacity="0.9" class="blip"/>
+          <circle cx="55" cy="65" r="2.5" fill="#FF3B5C" opacity="0.9" class="blip blink"/>
+          <circle cx="38" cy="32" r="2" fill="#00D4FF" opacity="0.9" class="blip"/>
+          <circle cx="70" cy="70" r="2" fill="#00E87A" opacity="0.9" class="blip"/>
+          <defs>
+            <radialGradient id="sweepGrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(60 50) scale(38)">
+              <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+        </svg>
+        <div class="radar-stat">
+          <div class="radar-percent">91<span>%</span></div>
+          <div class="radar-label">operational</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Table Section -->
+  <section class="table-section" data-testid="table-section">
+    <div class="table-header">
+      <div class="table-header-left">
+        <h2 class="table-title" data-testid="table-title">Asset Registry</h2>
+        <span class="table-count" data-testid="table-count" id="table-count">12 units</span>
+      </div>
+      <div class="table-controls">
+        <div class="filter-tabs" data-testid="filter-tabs">
+          <button class="filter-tab active" data-testid="filter-all" data-filter="all">All</button>
+          <button class="filter-tab" data-testid="filter-inflight" data-filter="In-Flight">
+            <span class="dot green"></span>In-Flight
+          </button>
+          <button class="filter-tab" data-testid="filter-idle" data-filter="Idle">
+            <span class="dot blue"></span>Idle
+          </button>
+          <button class="filter-tab" data-testid="filter-maintenance" data-filter="Maintenance">
+            <span class="dot yellow"></span>Maint.
+          </button>
+          <button class="filter-tab" data-testid="filter-critical" data-filter="Critical Alert">
+            <span class="dot red"></span>Critical
+          </button>
+        </div>
+        <button class="export-btn" data-testid="export-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2V9M4 6L7 9L10 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 11H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Export
+        </button>
+      </div>
+    </div>
+
+    <div class="table-wrapper" data-testid="drone-table-wrapper">
+      <table class="drone-table" data-testid="drone-table">
+        <thead>
+          <tr>
+            <th data-testid="th-drone-id">
+              <div class="th-inner">Drone ID <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 4L5 2L7 4M3 6L5 8L7 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+            </th>
+            <th data-testid="th-operator">Operator</th>
+            <th data-testid="th-battery">
+              <div class="th-inner">Battery <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 4L5 2L7 4M3 6L5 8L7 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+            </th>
+            <th data-testid="th-fleet">Fleet Tag</th>
+            <th data-testid="th-altitude">Altitude</th>
+            <th data-testid="th-status">Status</th>
+            <th data-testid="th-actions">Diagnostics</th>
+          </tr>
+        </thead>
+        <tbody id="drone-table-body" data-testid="drone-table-body">
+          <!-- Rows injected by JS -->
+        </tbody>
+      </table>
+
+      <!-- Empty State -->
+      <div class="empty-state hidden" id="empty-state" data-testid="empty-state">
+        <div class="empty-icon">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="27" stroke="#00D4FF" stroke-width="1" opacity="0.2"/><circle cx="28" cy="28" r="16" stroke="#00D4FF" stroke-width="1" opacity="0.15"/><path d="M20 28H36M28 20V36" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/><circle cx="28" cy="28" r="4" stroke="#00D4FF" stroke-width="1.5" opacity="0.5"/></svg>
+        </div>
+        <h3 class="empty-title">No matching entities found</h3>
+        <p class="empty-desc">Your search returned zero results. Try a different drone ID or operator name.</p>
+        <button class="empty-reset" data-testid="empty-state-reset" onclick="resetSearch()">Clear Search</button>
+      </div>
+
+      <!-- Error State -->
+      <div class="error-state hidden" id="error-state" data-testid="error-state">
+        <div class="error-icon">⚠</div>
+        <h3 class="error-title">Network Failure Detected</h3>
+        <p class="error-desc" id="error-desc">Failed to load fleet data. The command server returned an error.</p>
+        <button class="error-retry" data-testid="error-retry-btn" onclick="retryLoad()">Retry Connection</button>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination" data-testid="pagination">
+      <span class="pagination-info" id="pagination-info" data-testid="pagination-info">Showing 1–10 of 12</span>
+      <div class="pagination-controls">
+        <button class="page-btn" id="prev-btn" data-testid="pagination-prev-btn" disabled>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8 3L4 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Prev
+        </button>
+        <div class="page-numbers" id="page-numbers" data-testid="page-numbers"></div>
+        <button class="page-btn" id="next-btn" data-testid="pagination-next-btn">
+          Next
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M6 3L10 7L6 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ====== DIAGNOSTIC TOOLTIP ====== -->
+<div class="diagnostic-tooltip hidden" id="diagnostic-tooltip" data-testid="diagnostic-tooltip" role="tooltip">
+  <div class="tooltip-header">
+    <span class="tooltip-drone-id" id="tooltip-drone-id"></span>
+    <button class="tooltip-close" id="tooltip-close" data-testid="tooltip-close-btn" aria-label="Close diagnostic">✕</button>
+  </div>
+  <div class="tooltip-grid">
+    <div class="tooltip-metric">
+      <span class="tm-label">Battery</span>
+      <span class="tm-value" id="td-battery"></span>
+    </div>
+    <div class="tooltip-metric">
+      <span class="tm-label">Altitude</span>
+      <span class="tm-value" id="td-altitude"></span>
+    </div>
+    <div class="tooltip-metric">
+      <span class="tm-label">Speed</span>
+      <span class="tm-value" id="td-speed"></span>
+    </div>
+    <div class="tooltip-metric">
+      <span class="tm-label">Signal</span>
+      <span class="tm-value" id="td-signal"></span>
+    </div>
+    <div class="tooltip-metric">
+      <span class="tm-label">Flight Time</span>
+      <span class="tm-value" id="td-flighttime"></span>
+    </div>
+    <div class="tooltip-metric">
+      <span class="tm-label">Last Ping</span>
+      <span class="tm-value" id="td-lastping"></span>
+    </div>
+  </div>
+  <div class="tooltip-footer">
+    <div class="battery-bar-wrap">
+      <div class="battery-bar-track"><div class="battery-bar-fill" id="td-battery-bar"></div></div>
+    </div>
+    <span class="tooltip-status-label" id="td-status-label"></span>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
